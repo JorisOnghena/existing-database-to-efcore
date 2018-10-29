@@ -30,10 +30,11 @@ namespace existing_database_to_efcore
         DataTable GetData(string sql);
 
         /// <summary>
-        /// Generate code from a table description
+        /// Generate code from a table
         /// </summary>
-        /// <param name="description">The table description</param>
+        /// <param name="tableName">The table to generate code from</param>
+        /// <param name="nameSpace">The namespace to use when generating a class</param>
         /// <returns>A class generated from the description</returns>
-        string Generate(DataTable description);
+        string Generate(string tableName, string nameSpace = "MyNamespace");
     }
 }

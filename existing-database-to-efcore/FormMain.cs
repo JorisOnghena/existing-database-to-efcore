@@ -51,7 +51,7 @@ namespace existing_database_to_efcore
             {
                 DataTable test = (DataTable)this.dgviewTableDescription.DataSource;
                 IDataBase db = this.RetrieveDatabase();
-                this.txtSource.Text = db.Generate(db.DescribeTable(this.tviewTables.SelectedNode.Text));
+                this.txtSource.Text = db.Generate(this.tviewTables.SelectedNode.Text);
             }
             catch (Exception exception)
             {
