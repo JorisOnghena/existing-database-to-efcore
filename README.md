@@ -9,9 +9,11 @@ The idea of the project is to be be able to
 A few screenshots of the program.
 
 *Main screen*
+
 [![Main](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/screenshots/main_small.png "Main")](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/screenshots/main.png)
 
 *Create/edit configuration*
+
 [![Connection](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/screenshots/connection.png "Connection")](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/screenshots/connection.png)
 
 ## Example configuration file
