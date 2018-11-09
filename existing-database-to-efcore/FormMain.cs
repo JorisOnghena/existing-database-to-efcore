@@ -6,6 +6,8 @@ namespace existing_database_to_efcore
 {
     public partial class FormMain : Form
     {
+        private Configuration configuration;
+
         public FormMain()
         {
             InitializeComponent();
@@ -13,7 +15,7 @@ namespace existing_database_to_efcore
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            this.tsbtnRefreshConnection_Click(sender, e);
+            this.tsbtnRefreshConnection.Enabled = false;
         }
 
         private void tviewTables_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -33,12 +35,14 @@ namespace existing_database_to_efcore
 
         private IDataBase RetrieveDatabase()
         {
-            Configuration config = new Configuration();
-            if (!string.IsNullOrEmpty(config.ConnectionString))
+            if (this.configuration != null)
             {
-                if (config.Type.ToLower() == "mysql")
+                if (!string.IsNullOrEmpty(this.configuration.ConnectionString))
                 {
-                    return new DataBaseMySQL(config.ConnectionString);
+                    if (this.configuration.Type.ToLower() == "mysql")
+                    {
+                        return new DataBaseMySQL(this.configuration.ConnectionString);
+                    }
                 }
             }
 
@@ -66,7 +70,7 @@ namespace existing_database_to_efcore
 
         private void tsbtnAddConnection_Click(object sender, EventArgs e)
         {
-            FormDatabaseConnection frm = new FormDatabaseConnection();
+            FormDatabaseConnection frm = new FormDatabaseConnection(this.configuration);
             frm.ShowDialog();
         }
 
@@ -90,6 +94,23 @@ namespace existing_database_to_efcore
             {
                 MessageBox.Show(exception.Message, "An error occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ofdOpenIni.ShowDialog();
+        }
+
+        private void ofdOpenIni_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.configuration = new Configuration(this.ofdOpenIni.FileName);
+            this.tsbtnRefreshConnection_Click(sender, e);
+            this.tsbtnRefreshConnection.Enabled = true;
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.tsbtnAddConnection_Click(sender, e);
         }
     }
 }

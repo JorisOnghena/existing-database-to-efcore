@@ -32,9 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbtnAddConnection = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnRefreshConnection = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tviewTables = new System.Windows.Forms.TreeView();
@@ -44,7 +47,8 @@
             this.dgviewTableDescription = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGenerate = new System.Windows.Forms.Button();
-            this.tsbtnRefreshConnection = new System.Windows.Forms.ToolStripButton();
+            this.ofdOpenIni = new System.Windows.Forms.OpenFileDialog();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -66,10 +70,26 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // quitToolStripMenuItem
             // 
@@ -94,9 +114,18 @@
             this.tsbtnAddConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAddConnection.Image")));
             this.tsbtnAddConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbtnAddConnection.Name = "tsbtnAddConnection";
-            this.tsbtnAddConnection.Size = new System.Drawing.Size(133, 22);
-            this.tsbtnAddConnection.Text = "Manage connection";
+            this.tsbtnAddConnection.Size = new System.Drawing.Size(161, 22);
+            this.tsbtnAddConnection.Text = "Create/edit configuration";
             this.tsbtnAddConnection.Click += new System.EventHandler(this.tsbtnAddConnection_Click);
+            // 
+            // tsbtnRefreshConnection
+            // 
+            this.tsbtnRefreshConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshConnection.Image")));
+            this.tsbtnRefreshConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnRefreshConnection.Name = "tsbtnRefreshConnection";
+            this.tsbtnRefreshConnection.Size = new System.Drawing.Size(100, 22);
+            this.tsbtnRefreshConnection.Text = "Refresh tables";
+            this.tsbtnRefreshConnection.Click += new System.EventHandler(this.tsbtnRefreshConnection_Click);
             // 
             // statusStrip1
             // 
@@ -147,6 +176,7 @@
             // txtSource
             // 
             this.txtSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSource.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSource.Location = new System.Drawing.Point(563, 3);
             this.txtSource.Multiline = true;
             this.txtSource.Name = "txtSource";
@@ -205,14 +235,18 @@
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
-            // tsbtnRefreshConnection
+            // ofdOpenIni
             // 
-            this.tsbtnRefreshConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshConnection.Image")));
-            this.tsbtnRefreshConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnRefreshConnection.Name = "tsbtnRefreshConnection";
-            this.tsbtnRefreshConnection.Size = new System.Drawing.Size(66, 22);
-            this.tsbtnRefreshConnection.Text = "Refresh";
-            this.tsbtnRefreshConnection.Click += new System.EventHandler(this.tsbtnRefreshConnection_Click);
+            this.ofdOpenIni.Filter = "Config files|*.ini";
+            this.ofdOpenIni.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdOpenIni_FileOk);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -261,6 +295,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.ToolStripButton tsbtnRefreshConnection;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.OpenFileDialog ofdOpenIni;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
     }
 }
 

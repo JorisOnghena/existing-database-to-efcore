@@ -30,14 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDatabaseConnection));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDisplayName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboxType = new System.Windows.Forms.ComboBox();
+            this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtConnectionString = new System.Windows.Forms.TextBox();
-            this.cboxType = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDisplayName = new System.Windows.Forms.TextBox();
+            this.sfdIniFile = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,58 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
+            // 
+            // txtDisplayName
+            // 
+            this.txtDisplayName.Location = new System.Drawing.Point(98, 24);
+            this.txtDisplayName.Name = "txtDisplayName";
+            this.txtDisplayName.Size = new System.Drawing.Size(349, 20);
+            this.txtDisplayName.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Type";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Display name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Connectionstring";
+            // 
+            // cboxType
+            // 
+            this.cboxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxType.FormattingEnabled = true;
+            this.cboxType.Items.AddRange(new object[] {
+            "MySQL"});
+            this.cboxType.Location = new System.Drawing.Point(98, 85);
+            this.cboxType.Name = "cboxType";
+            this.cboxType.Size = new System.Drawing.Size(121, 21);
+            this.cboxType.TabIndex = 2;
+            // 
+            // txtConnectionString
+            // 
+            this.txtConnectionString.Location = new System.Drawing.Point(98, 54);
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.Size = new System.Drawing.Size(349, 20);
+            this.txtConnectionString.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -76,57 +129,11 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtConnectionString
+            // sfdIniFile
             // 
-            this.txtConnectionString.Location = new System.Drawing.Point(98, 54);
-            this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(349, 20);
-            this.txtConnectionString.TabIndex = 1;
-            // 
-            // cboxType
-            // 
-            this.cboxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxType.FormattingEnabled = true;
-            this.cboxType.Items.AddRange(new object[] {
-            "MySQL"});
-            this.cboxType.Location = new System.Drawing.Point(98, 85);
-            this.cboxType.Name = "cboxType";
-            this.cboxType.Size = new System.Drawing.Size(121, 21);
-            this.cboxType.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Connectionstring";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Display name";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Type";
-            // 
-            // txtDisplayName
-            // 
-            this.txtDisplayName.Location = new System.Drawing.Point(98, 24);
-            this.txtDisplayName.Name = "txtDisplayName";
-            this.txtDisplayName.Size = new System.Drawing.Size(349, 20);
-            this.txtDisplayName.TabIndex = 6;
+            this.sfdIniFile.DefaultExt = "ini";
+            this.sfdIniFile.Filter = "Config files|*.ini";
+            this.sfdIniFile.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdIniFile_FileOk);
             // 
             // FormDatabaseConnection
             // 
@@ -142,7 +149,7 @@
             this.Name = "FormDatabaseConnection";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add database connection";
+            this.Text = "Create/Edit database connection";
             this.Load += new System.EventHandler(this.FormCSharpCode_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -161,5 +168,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.SaveFileDialog sfdIniFile;
     }
 }

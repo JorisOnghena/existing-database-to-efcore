@@ -9,17 +9,23 @@ namespace existing_database_to_efcore
 
     public partial class FormDatabaseConnection : Form
     {
-        public FormDatabaseConnection()
+        private Configuration existingConfiguration = null;
+
+        public FormDatabaseConnection(Configuration existingConfiguration)
         {
             InitializeComponent();
+            this.existingConfiguration = existingConfiguration;
         }
 
         private void FormCSharpCode_Load(object sender, EventArgs e)
         {
-            Configuration config = new Configuration();
-            this.txtDisplayName.Text = config.DisplayName;
-            this.txtConnectionString.Text = config.ConnectionString;
-            this.cboxType.Text = config.Type;
+            if (this.existingConfiguration != null)
+            {
+                this.txtDisplayName.Text = this.existingConfiguration.DisplayName;
+                this.txtConnectionString.Text = this.existingConfiguration.ConnectionString;
+                this.cboxType.Text = this.existingConfiguration.Type;
+                this.sfdIniFile.FileName = this.existingConfiguration.FileConfiguration;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -29,13 +35,16 @@ namespace existing_database_to_efcore
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Configuration config = new Configuration();
-            config.DisplayName = this.txtDisplayName.Text;
-            config.ConnectionString = this.txtConnectionString.Text;
-            config.Type = this.cboxType.Text;
+            this.sfdIniFile.ShowDialog();
+        }
 
-            config.Save();
-
+        private void sfdIniFile_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Configuration configToSave = new Configuration(this.sfdIniFile.FileName);
+            configToSave.DisplayName = this.txtDisplayName.Text;
+            configToSave.ConnectionString = this.txtConnectionString.Text;
+            configToSave.Type = this.cboxType.Text;
+            configToSave.Save();
             this.Close();
         }
     }

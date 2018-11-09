@@ -72,13 +72,13 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="DataBaseMySQL.cs" />
-    <Compile Include="IDataBase.cs" />
     <Compile Include="FormDatabaseConnection.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDatabaseConnection.Designer.cs">
       <DependentUpon>FormDatabaseConnection.cs</DependentUpon>
     </Compile>
+    <Compile Include="IDataBase.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
