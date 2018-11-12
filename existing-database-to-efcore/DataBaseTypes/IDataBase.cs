@@ -17,10 +17,13 @@
         /// <param name="originalType">
         /// The original database type to convert.
         /// </param>
+        /// <param name="canBeNull">
+        /// Specifies if the column can be Null in the database.
+        /// </param>
         /// <returns>
         /// The c# type representation.
         /// </returns>
-        string ConvertDBTypeCSharp(string originalType);
+        string ConvertDBTypeCSharp(string originalType, bool canBeNull);
 
         /// <summary>
         /// Describe the columns, properties in the given table.

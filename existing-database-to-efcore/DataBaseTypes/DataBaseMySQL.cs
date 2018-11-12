@@ -17,16 +17,23 @@
         public string ConnectionString { get; private set; }
 
         /// <inheritdoc />
-        public string ConvertDBTypeCSharp(string originalType)
+        public string ConvertDBTypeCSharp(string originalType, bool canBeNull)
         {
+            string nullIndicator = "";
+
+            if (canBeNull)
+            {
+                nullIndicator = "?";
+            }
+
             if (originalType.ToLower().Contains("int"))
             {
-                return "int";
+                return $"int{nullIndicator}";
             }
             else if (originalType.ToLower().Contains("timestamp") || originalType.ToLower().Contains("datetime")
                                                                   || originalType.ToLower().Contains("date"))
             {
-                return "DateTime";
+                return $"DateTime{nullIndicator}";
             }
             else if (originalType.ToLower().Contains("text") || originalType.ToLower().Contains("varchar")
                                                              || originalType.ToLower().Contains("char"))
@@ -35,11 +42,11 @@
             }
             else if (originalType.ToLower().Contains("decimal"))
             {
-                return "decimal";
+                return $"decimal{nullIndicator}";
             }
             else if (originalType.ToLower().Contains("double"))
             {
-                return "double";
+                return $"double{nullIndicator}";
             }
             else if (originalType.ToLower().Contains("blob"))
             {

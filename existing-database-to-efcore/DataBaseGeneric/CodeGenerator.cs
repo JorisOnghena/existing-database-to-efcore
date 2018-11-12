@@ -50,7 +50,7 @@
             foreach (Column column in descriptionOfTable.Columns)
             {
                 string columnNameTitleCase = column.Name.ToTitleCase();
-                string columnTypeConverted = dataBase.ConvertDBTypeCSharp(column.Type);
+                string columnTypeConverted = dataBase.ConvertDBTypeCSharp(column.Type, column.CanBeNull);
 
                 // Is primary key then add to list of keys...
                 if (column.IsKey)
@@ -93,6 +93,12 @@
                 {
                     fluentField += Environment.NewLine;
                     fluentField += $"\t\t\t\t{maxLength}";
+                }
+                
+                if (!column.CanBeNull)
+                {
+                    fluentField += Environment.NewLine;
+                    fluentField += "\t\t\t\t.IsRequired()";
                 }
 
                 if (column.AutoIncrement)
