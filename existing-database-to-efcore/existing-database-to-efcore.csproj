@@ -41,6 +41,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FastColoredTextBox, Version=2.16.21.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
+      <HintPath>..\packages\FCTB.2.16.21.0\lib\FastColoredTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>

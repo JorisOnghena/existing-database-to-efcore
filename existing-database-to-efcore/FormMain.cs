@@ -7,6 +7,8 @@
     using existing_database_to_efcore.DataBaseGeneric;
     using existing_database_to_efcore.DataBaseTypes;
 
+    using FastColoredTextBoxNS;
+
     public partial class FormMain : Form
     {
         private Configuration configuration;
