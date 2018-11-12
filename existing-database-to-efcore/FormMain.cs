@@ -1,9 +1,11 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
-
-namespace existing_database_to_efcore
+﻿namespace existing_database_to_efcore
 {
+    using System;
+    using System.Data;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using existing_database_to_efcore.DataBaseGeneric;
+
     public partial class FormMain : Form
     {
         private Configuration configuration;
@@ -25,7 +27,22 @@ namespace existing_database_to_efcore
                 string id = e.Node.Text;
                 this.tviewTables.SelectedNode = e.Node;
                 var tables = this.RetrieveDatabase().DescribeTable(id);
-                this.dgviewTableDescription.DataSource = tables;
+                this.dgviewTableDescription.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                this.dgviewTableDescription.DataSource = tables.Columns;
+
+                foreach (DataGridViewRow row in this.dgviewTableDescription.Rows)
+                {
+                    if (bool.Parse(row.Cells["IsKey"].Value.ToString()))
+                    {
+                        row.DefaultCellStyle.BackColor = Color.DarkGoldenrod;
+                        row.DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = DefaultBackColor;
+                        row.DefaultCellStyle.ForeColor = DefaultForeColor;
+                    }
+                }
             }
             catch (Exception exception)
             {
@@ -53,7 +70,6 @@ namespace existing_database_to_efcore
         {
             try
             {
-                DataTable test = (DataTable)this.dgviewTableDescription.DataSource;
                 IDataBase db = this.RetrieveDatabase();
                 this.txtSource.Text = db.Generate(this.tviewTables.SelectedNode.Text);
             }
@@ -83,9 +99,9 @@ namespace existing_database_to_efcore
                 this.tviewTables.Nodes.Clear();
                 this.tviewTables.Nodes.Add("TABLES", "Tables", 0);
 
-                foreach (DataRow row in tables.Rows)
+                foreach (var table in tables)
                 {
-                    this.tviewTables.Nodes[0].Nodes.Add(row[0].ToString(), row[0].ToString(), 1);
+                    this.tviewTables.Nodes[0].Nodes.Add(table.Name, table.Name, 1);
                 }
 
                 this.tviewTables.Nodes[0].Expand();

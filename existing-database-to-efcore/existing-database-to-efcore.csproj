@@ -71,14 +71,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="DataBaseMySQL.cs" />
+    <Compile Include="DataBaseGeneric\Column.cs" />
+    <Compile Include="DataBaseGeneric\Table.cs" />
+    <Compile Include="DataBaseTypes\DataBaseMySQL.cs" />
     <Compile Include="FormDatabaseConnection.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDatabaseConnection.Designer.cs">
       <DependentUpon>FormDatabaseConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="IDataBase.cs" />
+    <Compile Include="DataBaseTypes\IDataBase.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

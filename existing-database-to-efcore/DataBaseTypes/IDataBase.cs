@@ -1,7 +1,9 @@
-﻿using System.Data;
-
-namespace existing_database_to_efcore
+﻿namespace existing_database_to_efcore.DataBaseGeneric
 {
+    using System.Collections.Generic;
+    using System.Data;
+    using DataBaseGeneric;
+
     public interface IDataBase
     {
         /// <summary>
@@ -13,14 +15,14 @@ namespace existing_database_to_efcore
         /// List all tables in the database/scheme.
         /// </summary>
         /// <returns>A data set with a list of all tables found.</returns>
-        DataTable ListAllTables();
+        List<Table> ListAllTables();
 
         /// <summary>
         /// Describe the columns, properties in the given table.
         /// </summary>
         /// <param name="tableName">The table to describe.</param>
         /// <returns>A data set with a description of the table.</returns>
-        DataTable DescribeTable(string tableName);
+        Table DescribeTable(string tableName);
 
         /// <summary>
         /// Retrieve a data set from a SQL query

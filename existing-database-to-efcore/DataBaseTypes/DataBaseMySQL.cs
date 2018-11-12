@@ -1,12 +1,11 @@
-﻿using MySql.Data.MySqlClient;
-using System.Data;
-
-namespace existing_database_to_efcore
+﻿namespace existing_database_to_efcore.DataBaseGeneric
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Xml;
+    using MySql.Data.MySqlClient;
+    using System.Data;
 
     public class DataBaseMySQL : IDataBase
     {
@@ -19,15 +18,42 @@ namespace existing_database_to_efcore
         }
 
         /// <inheritdoc cref="ListAllTables"/>
-        public DataTable ListAllTables()
+        public List<Table> ListAllTables()
         {
-            return this.GetData("SHOW TABLES");
+            List<Table> tables = new List<Table>();
+
+            DataTable dt = this.GetData("SHOW TABLES");
+
+            foreach (DataRow row in dt.Rows)
+            {
+                tables.Add(new Table(row[0].ToString()));
+            }
+
+            return tables;
         }
 
         /// <inheritdoc cref="DescribeTable"/>
-        public DataTable DescribeTable(string tableName)
+        public Table DescribeTable(string tableName)
         {
-            return this.GetData("DESCRIBE " + tableName);
+            List<Column> columns = new List<Column>();
+
+            DataTable dt = this.GetData("DESCRIBE " + tableName);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                columns.Add(new Column()
+                {
+                    Name = row["Field"].ToString(),
+                    DeFaultValue = row["Default"].ToString(),
+                    Type = row["Type"].ToString(),
+                    CanBeNull = (row["Null"].ToString().ToUpper() == "YES"),
+                    IsKey = (row["Key"] != null && !string.IsNullOrEmpty(row["Key"].ToString()) && row["Key"].ToString().ToUpper() == "PRI"),
+                    //Extra = row["Extra"].ToString(),
+                    AutoIncrement = (row["Extra"] != null && !string.IsNullOrEmpty(row["Extra"].ToString()) && row["Extra"].ToString().ToLower().Contains("auto_increment"))
+                });
+            }
+
+            return new Table(tableName, columns);
         }
 
         /// <inheritdoc cref="GetData"/>
@@ -91,9 +117,8 @@ namespace existing_database_to_efcore
         public string Generate(string tableName, string nameSpace = "MyNamespace")
         {
             StringBuilder sb = new StringBuilder();
-            DataTable descriptionOfTable = this.DescribeTable(tableName);
-            string field, type, extraProp, defaultValue;
-            bool canBeNull, isKey, isAutoIncrement;
+            Table descriptionOfTable = this.DescribeTable(tableName);
+            string tableNameTitleCase = this.ToTitleCase(tableName);
 
             sb.Append("namespace " + nameSpace);
             sb.Append(Environment.NewLine);
@@ -104,7 +129,7 @@ namespace existing_database_to_efcore
             sb.Append("\tusing System.Collections.Generic;");
             sb.Append(Environment.NewLine);
             sb.Append(Environment.NewLine);
-            sb.Append("\tpublic sealed class " + this.ToTitleCase(tableName));
+            sb.Append("\tpublic sealed class " + tableNameTitleCase);
             sb.Append(Environment.NewLine);
             sb.Append("\t{");
             sb.Append(Environment.NewLine);
@@ -112,45 +137,38 @@ namespace existing_database_to_efcore
             List<string> keyFields = new List<string>();
             List<string> fluentConfigurationFields = new List<string>();
 
-            foreach (DataRow row in descriptionOfTable.Rows)
+            foreach (Column column in descriptionOfTable.Columns)
             {
-                field = row["Field"].ToString();
-                defaultValue = row["Default"].ToString();
-                type = row["Type"].ToString();
-                canBeNull = (row["Null"].ToString().ToUpper() == "YES");
-                isKey = (row["Key"] != null && !string.IsNullOrEmpty(row["Key"].ToString())
-                                            && row["Key"].ToString().ToUpper() == "PRI");
-                extraProp = row["Extra"].ToString();
-                isAutoIncrement = (row["Extra"] != null && !string.IsNullOrEmpty(row["Extra"].ToString())
-                                                        && row["Extra"].ToString().ToLower().Contains("auto_increment"));
+                string columnNameTitleCase = this.ToTitleCase(column.Name);
+                string columnTypeConverted = this.ConvertType(column.Type);
 
                 // Is primary key then add to list of keys...
-                if (isKey)
+                if (column.IsKey)
                 {
-                    keyFields.Add(this.ToTitleCase(field));
+                    keyFields.Add(columnNameTitleCase);
                 }
 
                 // Create fluent notation 
-                string fluentField = "builder.Property(b => b." + this.ToTitleCase(field)
-                        + ").HasColumnName(\"" + field + "\").HasColumnType(\"" + type + "\")";
+                string fluentField = "builder.Property(b => b." + columnNameTitleCase
+                        + ").HasColumnName(\"" + column.Name + "\").HasColumnType(\"" + column.Type + "\")";
 
-                if (!string.IsNullOrEmpty(defaultValue))
+                if (!string.IsNullOrEmpty(column.DeFaultValue))
                 {
-                    if (this.ConvertType(type) == "string")
+                    if (columnTypeConverted == "string")
                     {
-                        fluentField += ".HasDefaultValue(\"" + defaultValue + "\")";
+                        fluentField += ".HasDefaultValue(\"" + column.DeFaultValue + "\")";
                     }
                     else
                     {
-                        fluentField += ".HasDefaultValue(" + defaultValue + ")";
+                        fluentField += ".HasDefaultValue(" + column.DeFaultValue + ")";
                     }
                 }
 
                 fluentField += ";";
                 fluentConfigurationFields.Add(fluentField);
-    
+
                 // Add field as property
-                sb.Append("\t\tpublic " + this.ConvertType(type) + " " + this.ToTitleCase(field) + " { get; set; }");
+                sb.Append("\t\tpublic " + columnTypeConverted + " " + columnNameTitleCase + " { get; set; }");
                 sb.Append(Environment.NewLine);
             }
 
@@ -165,17 +183,17 @@ namespace existing_database_to_efcore
             sb.Append(Environment.NewLine);
             sb.Append("{");
             sb.Append(Environment.NewLine);
-            sb.Append("\tMicrosoft.EntityFrameworkCore;");
+            sb.Append("\tusing Microsoft.EntityFrameworkCore;");
             sb.Append(Environment.NewLine);
-            sb.Append("\tMicrosoft.EntityFrameworkCore.Metadata.Builders;");
+            sb.Append("\tusing Microsoft.EntityFrameworkCore.Metadata.Builders;");
             sb.Append(Environment.NewLine);
             sb.Append(Environment.NewLine);
-            sb.Append("\tinternal sealed class " + this.ToTitleCase(tableName) + "Configuration : IEntityTypeConfiguration<" + this.ToTitleCase(tableName) + ">");
+            sb.Append("\tinternal sealed class " + tableNameTitleCase + "Configuration : IEntityTypeConfiguration<" + tableNameTitleCase + ">");
             sb.Append(Environment.NewLine);
             sb.Append("\t{");
             sb.Append(Environment.NewLine);
 
-            sb.Append("\t\tpublic void Configure(EntityTypeBuilder<" + this.ToTitleCase(tableName) + "> builder)");
+            sb.Append("\t\tpublic void Configure(EntityTypeBuilder<" + tableNameTitleCase + "> builder)");
             sb.Append(Environment.NewLine);
             sb.Append("\t\t{");
             sb.Append(Environment.NewLine);
