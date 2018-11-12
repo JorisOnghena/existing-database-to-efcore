@@ -20,6 +20,12 @@
 
         public static string GenerateCSharp(IDataBase dataBase, string tableName, string nameSpace = "MyNamespace")
         {
+            List<string> specialDefaultFunctions = new List<string>()
+            {
+                "CURRENT_TIME", "CURRENT_TIMESTAMP", "CURRENT_DATE",
+                "CURTIME", "CURDATE", "LOCALTIME", "LOCALTIMESTAMP"
+            };
+
             StringBuilder sb = new StringBuilder();
             Table descriptionOfTable = dataBase.DescribeTable(tableName);
             string tableNameTitleCase = tableName.ToTitleCase();
@@ -69,6 +75,10 @@
                     {
                         fluentField += Environment.NewLine;
                         fluentField += "\t\t\t\t.HasDefaultValue(\"" + column.DeFaultValue + "\")";
+                    else if (specialDefaultFunctions.Contains(column.DeFaultValue.ToUpper()))
+                    {
+                        fluentField += Environment.NewLine;
+                        fluentField += $"\t\t\t\t.HasDefaultValueSql(\"{column.DeFaultValue}\")";
                     }
                     else
                     {
