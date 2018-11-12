@@ -71,7 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="DataBaseGeneric\CodeGenerator.cs" />
     <Compile Include="DataBaseGeneric\Column.cs" />
+    <Compile Include="DataBaseGeneric\Extentions.cs" />
     <Compile Include="DataBaseGeneric\Table.cs" />
     <Compile Include="DataBaseTypes\DataBaseMySQL.cs" />
     <Compile Include="FormDatabaseConnection.cs">

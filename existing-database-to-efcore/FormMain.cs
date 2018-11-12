@@ -5,6 +5,7 @@
     using System.Drawing;
     using System.Windows.Forms;
     using existing_database_to_efcore.DataBaseGeneric;
+    using existing_database_to_efcore.DataBaseTypes;
 
     public partial class FormMain : Form
     {
@@ -71,7 +72,7 @@
             try
             {
                 IDataBase db = this.RetrieveDatabase();
-                this.txtSource.Text = db.Generate(this.tviewTables.SelectedNode.Text);
+                this.txtSource.Text = CodeGenerator.GenerateCSharp(db, this.tviewTables.SelectedNode.Text);
             }
             catch (Exception exception)
             {

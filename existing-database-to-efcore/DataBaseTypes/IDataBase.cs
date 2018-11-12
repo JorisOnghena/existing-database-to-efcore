@@ -1,8 +1,8 @@
-﻿namespace existing_database_to_efcore.DataBaseGeneric
+﻿namespace existing_database_to_efcore.DataBaseTypes
 {
     using System.Collections.Generic;
     using System.Data;
-    using DataBaseGeneric;
+    using existing_database_to_efcore.DataBaseGeneric;
 
     public interface IDataBase
     {
@@ -12,10 +12,15 @@
         string ConnectionString { get; }
 
         /// <summary>
-        /// List all tables in the database/scheme.
+        /// Convert a database type to a C# type.
         /// </summary>
-        /// <returns>A data set with a list of all tables found.</returns>
-        List<Table> ListAllTables();
+        /// <param name="originalType">
+        /// The original database type to convert.
+        /// </param>
+        /// <returns>
+        /// The c# type representation.
+        /// </returns>
+        string ConvertDBTypeCSharp(string originalType);
 
         /// <summary>
         /// Describe the columns, properties in the given table.
@@ -32,11 +37,9 @@
         DataTable GetData(string sql);
 
         /// <summary>
-        /// Generate code from a table
+        /// List all tables in the database/scheme.
         /// </summary>
-        /// <param name="tableName">The table to generate code from</param>
-        /// <param name="nameSpace">The namespace to use when generating a class</param>
-        /// <returns>A class generated from the description</returns>
-        string Generate(string tableName, string nameSpace = "MyNamespace");
+        /// <returns>A data set with a list of all tables found.</returns>
+        List<Table> ListAllTables();
     }
 }
