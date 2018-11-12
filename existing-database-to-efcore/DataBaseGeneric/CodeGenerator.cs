@@ -62,6 +62,12 @@
                     }
                 }
 
+                string maxLength = column.Type.ExtractMaxLength();
+                if (!string.IsNullOrEmpty(maxLength))
+                {
+                    fluentField += Environment.NewLine;
+                    fluentField += $"\t\t\t\t{maxLength}";
+                }
                 fluentField += ";";
                 fluentConfigurationFields.Add(fluentField);
 
