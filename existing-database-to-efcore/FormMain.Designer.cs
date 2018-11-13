@@ -211,6 +211,8 @@
             // 
             // txtSource
             // 
+            this.txtSource.AllowDrop = false;
+            this.txtSource.AllowMacroRecording = false;
             this.txtSource.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -241,10 +243,12 @@
             this.txtSource.Location = new System.Drawing.Point(3, 235);
             this.txtSource.Name = "txtSource";
             this.txtSource.Paddings = new System.Windows.Forms.Padding(0);
+            this.txtSource.ReadOnly = true;
             this.txtSource.RightBracket = ')';
             this.txtSource.RightBracket2 = '}';
             this.txtSource.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.txtSource.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtSource.ServiceColors")));
+            this.txtSource.ShowFoldingLines = true;
             this.txtSource.Size = new System.Drawing.Size(508, 227);
             this.txtSource.TabIndex = 3;
             this.txtSource.Zoom = 100;

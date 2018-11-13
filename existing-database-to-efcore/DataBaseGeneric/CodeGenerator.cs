@@ -144,7 +144,7 @@
             sb.Append("\t\t{");
             sb.Append(Environment.NewLine);
 
-            sb.Append($"\t\tbuilder.ToTable(\"{tableName}\")");
+            sb.Append($"\t\t\tbuilder.ToTable(\"{tableName}\")");
 
             if (keyFields.Count == 1)
             {
@@ -181,7 +181,7 @@
 
             foreach (var fluent in fluentConfigurationFields)
             {
-                sb.Append($"\t\t{fluent}");
+                sb.Append($"\t\t\t{fluent}");
                 sb.Append(Environment.NewLine);
             }
 
