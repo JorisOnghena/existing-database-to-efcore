@@ -35,24 +35,35 @@
         /// <returns>
         /// The <see cref="string"/> with the max length definition.
         /// </returns>
-        public static string ExtractMaxLength(this string fieldType)
+        public static string ExtractMaxLengthAsFluent(this string fieldType)
         {
-            Regex r1 = new Regex(@"n?varchar ?\(([\d]+|max)\)");
-            Match match = r1.Match(fieldType.ToLower());
-            if (match.Success)
+            var maxValue = fieldType.ExtractMaxLengthAsValue();
+            if (!string.IsNullOrEmpty(maxValue))
             {
-                string m = match.Groups[1].Value;
-                if (m == "max")
+                if (maxValue == "max")
                 {
                     return ".HasMaxLength(null)";
                 }
                 else
                 {
-                    return $".HasMaxLength({m})";
+                    return $".HasMaxLength({maxValue})";
                 }
             }
 
             return string.Empty;
         }
+
+        public static string ExtractMaxLengthAsValue(this string fieldType)
+        {
+            Regex r1 = new Regex(@"n?varchar ?\(([\d]+|max)\)");
+            Match match = r1.Match(fieldType.ToLower());
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+
+            return string.Empty;
+        }
+
     }
 }

@@ -89,12 +89,13 @@
                 }
 
                 string maxLength = column.Type.ExtractMaxLength();
-                if (!string.IsNullOrEmpty(maxLength))
-                {
-                    fluentField += Environment.NewLine;
-                    fluentField += $"\t\t\t\t{maxLength}";
-                }
-                
+                    string maxLength = column.Type.ExtractMaxLengthAsFluent();
+                    if (!string.IsNullOrEmpty(maxLength))
+                    {
+                        fluentField += Environment.NewLine;
+                        fluentField += $"\t\t\t\t{maxLength}";
+                    }
+
                 if (!column.CanBeNull)
                 {
                     fluentField += Environment.NewLine;
