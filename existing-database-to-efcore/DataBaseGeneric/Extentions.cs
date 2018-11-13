@@ -42,12 +42,10 @@
             {
                 if (maxValue == "max")
                 {
-                    return ".HasMaxLength(null)";
+                    return string.Empty;
                 }
-                else
-                {
-                    return $".HasMaxLength({maxValue})";
-                }
+
+                return $".HasMaxLength({maxValue})";
             }
 
             return string.Empty;
