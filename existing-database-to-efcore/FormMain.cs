@@ -74,7 +74,7 @@
             try
             {
                 IDataBase db = this.RetrieveDatabase();
-                this.txtSource.Text = CodeGenerator.GenerateCSharp(db, this.tviewTables.SelectedNode.Text);
+                this.txtSource.Text = CodeGenerator.GenerateCSharp(db, this.tviewTables.SelectedNode.Text, this.configuration.CodeNamespace, this.configuration.CodeGenerateSealedClasses);
             }
             catch (Exception exception)
             {

@@ -25,6 +25,8 @@ namespace existing_database_to_efcore
                 this.txtConnectionString.Text = this.existingConfiguration.ConnectionString;
                 this.cboxType.Text = this.existingConfiguration.Type;
                 this.sfdIniFile.FileName = this.existingConfiguration.FileConfiguration;
+                this.txtNamespace.Text = this.existingConfiguration.CodeNamespace;
+                this.cbSealed.Checked = this.existingConfiguration.CodeGenerateSealedClasses;
             }
         }
 
@@ -44,6 +46,8 @@ namespace existing_database_to_efcore
             configToSave.DisplayName = this.txtDisplayName.Text;
             configToSave.ConnectionString = this.txtConnectionString.Text;
             configToSave.Type = this.cboxType.Text;
+            configToSave.CodeNamespace = this.txtNamespace.Text;
+            configToSave.CodeGenerateSealedClasses = this.cbSealed.Checked;
             configToSave.Save();
             this.Close();
         }

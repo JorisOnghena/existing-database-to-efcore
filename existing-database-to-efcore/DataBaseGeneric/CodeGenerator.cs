@@ -18,7 +18,7 @@
             public bool AutoIncrement;
         }
 
-        public static string GenerateCSharp(IDataBase dataBase, string tableName, string nameSpace = "MyNamespace")
+        public static string GenerateCSharp(IDataBase dataBase, string tableName, string nameSpace = "MyNamespace", bool sealedClasses = true)
         {
             List<string> specialDefaultFunctions = new List<string>()
             {
@@ -39,7 +39,7 @@
             sb.Append("\tusing System.Collections.Generic;");
             sb.Append(Environment.NewLine);
             sb.Append(Environment.NewLine);
-            sb.Append($"\tpublic sealed class {tableNameTitleCase}");
+            sb.Append($"\tpublic {(sealedClasses ? "sealed " : "")}class {tableNameTitleCase}");
             sb.Append(Environment.NewLine);
             sb.Append("\t{");
             sb.Append(Environment.NewLine);
@@ -134,7 +134,7 @@
             sb.Append("\tusing " + nameSpace + ";");
             sb.Append(Environment.NewLine);
             sb.Append(Environment.NewLine);
-            sb.Append($"\tinternal sealed class {tableNameTitleCase}Configuration : IEntityTypeConfiguration<{tableNameTitleCase}>");
+            sb.Append($"\tinternal {(sealedClasses? "sealed ": "")}class {tableNameTitleCase}Configuration : IEntityTypeConfiguration<{tableNameTitleCase}>");
             sb.Append(Environment.NewLine);
             sb.Append("\t{");
             sb.Append(Environment.NewLine);

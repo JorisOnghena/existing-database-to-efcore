@@ -15,6 +15,11 @@
         private const string ConnectionSectionName = "Connection";
 
         /// <summary>
+        /// The code section name inside the file.
+        /// </summary>
+        private const string CodeSectionName = "CodeGeneration";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Configuration"/> class.
         /// </summary>
         /// <param name="fileConfiguration">
@@ -30,6 +35,9 @@
                 this.DisplayName = data[ConnectionSectionName]["DisplayName"];
                 this.ConnectionString = data[ConnectionSectionName]["String"];
                 this.Type = data[ConnectionSectionName]["Type"];
+
+                this.CodeNamespace = data[CodeSectionName]["Namespace"] ?? "MyNamespace";
+                this.CodeGenerateSealedClasses = bool.Parse(data[CodeSectionName]["SealedClasses"] ?? "true");
             }
         }
 
@@ -54,6 +62,16 @@
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or sets the <see langword="namespace"/> to use when generating code.
+        /// </summary>
+        public string CodeNamespace { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to generate <see langword="sealed"/> classes.
+        /// </summary>
+        public bool CodeGenerateSealedClasses { get; set; }
+
+        /// <summary>
         /// Save configuration to file.
         /// </summary>
         public void Save()
@@ -66,6 +84,9 @@
                 data[ConnectionSectionName]["DisplayName"] = this.DisplayName;
                 data[ConnectionSectionName]["String"] = this.ConnectionString;
                 data[ConnectionSectionName]["Type"] = this.Type;
+
+                data[CodeSectionName]["Namespace"] = this.CodeNamespace;
+                data[CodeSectionName]["SealedClasses"] = this.CodeGenerateSealedClasses.ToString();
             }
             else
             {
@@ -73,6 +94,9 @@
                 data[ConnectionSectionName]["DisplayName"] = this.DisplayName;
                 data[ConnectionSectionName]["String"] = this.ConnectionString;
                 data[ConnectionSectionName]["Type"] = this.Type;
+
+                data[CodeSectionName]["Namespace"] = this.CodeNamespace;
+                data[CodeSectionName]["SealedClasses"] = this.CodeGenerateSealedClasses.ToString();
             }
 
             parser.WriteFile(this.FileConfiguration, data);
