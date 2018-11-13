@@ -1,11 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace existing_database_to_efcore
+﻿namespace existing_database_to_efcore
 {
-    using IniParser;
-    using IniParser.Model;
-    using System.IO;
+    using System;
+    using System.Windows.Forms;
 
     public partial class FormDatabaseConnection : Form
     {

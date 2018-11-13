@@ -40,10 +40,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.sfdIniFile = new System.Windows.Forms.SaveFileDialog();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbSealed = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNamespace = new System.Windows.Forms.TextBox();
-            this.cbSealed = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -108,7 +108,8 @@
             this.cboxType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxType.FormattingEnabled = true;
             this.cboxType.Items.AddRange(new object[] {
-            "MySQL"});
+            "MySQL",
+            "MicrosoftSQL"});
             this.cboxType.Location = new System.Drawing.Point(98, 85);
             this.cboxType.Name = "cboxType";
             this.cboxType.Size = new System.Drawing.Size(121, 21);
@@ -164,6 +165,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Code generation";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 53);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Sealed classes";
+            // 
+            // cbSealed
+            // 
+            this.cbSealed.AutoSize = true;
+            this.cbSealed.Checked = true;
+            this.cbSealed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbSealed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSealed.Location = new System.Drawing.Point(98, 53);
+            this.cbSealed.Name = "cbSealed";
+            this.cbSealed.Size = new System.Drawing.Size(15, 14);
+            this.cbSealed.TabIndex = 6;
+            this.cbSealed.UseVisualStyleBackColor = true;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -182,28 +205,6 @@
             this.txtNamespace.Size = new System.Drawing.Size(349, 20);
             this.txtNamespace.TabIndex = 4;
             this.txtNamespace.Text = "MyNamespace";
-            // 
-            // cbSealed
-            // 
-            this.cbSealed.AutoSize = true;
-            this.cbSealed.Checked = true;
-            this.cbSealed.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbSealed.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSealed.Location = new System.Drawing.Point(98, 53);
-            this.cbSealed.Name = "cbSealed";
-            this.cbSealed.Size = new System.Drawing.Size(15, 14);
-            this.cbSealed.TabIndex = 6;
-            this.cbSealed.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 53);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Sealed classes";
             // 
             // FormDatabaseConnection
             // 

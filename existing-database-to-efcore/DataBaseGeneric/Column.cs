@@ -18,5 +18,7 @@
         public string NameOverride { get; set; }
 
         public string Type { get; set; }
+
+        public string MaxLength { get; set; }
     }
 }

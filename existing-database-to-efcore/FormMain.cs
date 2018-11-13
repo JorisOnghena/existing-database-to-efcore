@@ -1,13 +1,10 @@
 ﻿namespace existing_database_to_efcore
 {
     using System;
-    using System.Data;
     using System.Drawing;
     using System.Windows.Forms;
     using existing_database_to_efcore.DataBaseGeneric;
     using existing_database_to_efcore.DataBaseTypes;
-
-    using FastColoredTextBoxNS;
 
     public partial class FormMain : Form
     {
@@ -62,6 +59,11 @@
                     if (this.configuration.Type.ToLower() == "mysql")
                     {
                         return new DataBaseMySQL(this.configuration.ConnectionString);
+                    }
+                    
+                    if(this.configuration.Type.ToLower() == "microsoftsql")
+                    {
+                        return new DataBaseMicrosoftSQLServer(this.configuration.ConnectionString);
                     }
                 }
             }

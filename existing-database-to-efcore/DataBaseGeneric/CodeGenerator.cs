@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
     using existing_database_to_efcore.DataBaseTypes;
@@ -88,13 +87,23 @@
                     }
                 }
 
-                string maxLength = column.Type.ExtractMaxLength();
+                if (!string.IsNullOrEmpty(column.MaxLength))
+                {
+                    if (column.MaxLength.ToLower() != "max")
+                    {
+                        fluentField += Environment.NewLine;
+                        fluentField += $"\t\t\t\t.HasMaxLength({column.MaxLength})";
+                    }
+                }
+                else // If we didn't get a MaxLength, try to determine it from the type.
+                {
                     string maxLength = column.Type.ExtractMaxLengthAsFluent();
                     if (!string.IsNullOrEmpty(maxLength))
                     {
                         fluentField += Environment.NewLine;
                         fluentField += $"\t\t\t\t{maxLength}";
                     }
+                }
 
                 if (!column.CanBeNull)
                 {

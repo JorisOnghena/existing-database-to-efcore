@@ -1,5 +1,6 @@
 ﻿namespace existing_database_to_efcore.DataBaseGeneric
 {
+    using System.Runtime.InteropServices.WindowsRuntime;
     using System.Text.RegularExpressions;
 
     /// <summary>
@@ -19,7 +20,7 @@
         public static string ToTitleCase(this string toConvert)
         {
             return (System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
-                           toConvert.ToLower().Trim().Replace("_", " "))).Trim().Replace(" ", "");
+                           toConvert.ToLower().Trim().Replace("_", " "))).Trim().Replace(" ", string.Empty);
         }
 
         /// <summary>
@@ -63,5 +64,12 @@
             return string.Empty;
         }
 
+
+        public static int? ToNullableInt(this string s)
+        {
+            int i;
+            if (int.TryParse(s, out i)) return i;
+            return null;
+        }
     }
 }
