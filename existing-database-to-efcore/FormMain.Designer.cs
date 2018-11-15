@@ -234,7 +234,6 @@
             this.txtSource.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtSource.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.txtSource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSource.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtSource.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.AllTextRange;
             this.txtSource.IsReplaceMode = false;
             this.txtSource.Language = FastColoredTextBoxNS.Language.CSharp;
@@ -255,6 +254,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Location = new System.Drawing.Point(683, 3);
             this.groupBox1.Name = "groupBox1";
