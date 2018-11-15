@@ -55,6 +55,9 @@
     <Reference Include="MySql.Data, Version=8.0.13.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.13\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Core" />
@@ -73,6 +76,7 @@
     <Compile Include="DataBaseGeneric\Extentions.cs" />
     <Compile Include="DataBaseGeneric\Table.cs" />
     <Compile Include="DataBaseTypes\DataBaseMicrosoftSQLServer.cs" />
+    <Compile Include="DataBaseTypes\DataBaseOracle.cs" />
     <Compile Include="DataBaseTypes\DataBaseMySQL.cs" />
     <Compile Include="FormDatabaseConnection.cs">
       <SubType>Form</SubType>

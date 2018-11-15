@@ -109,7 +109,8 @@
             this.cboxType.FormattingEnabled = true;
             this.cboxType.Items.AddRange(new object[] {
             "MySQL",
-            "MicrosoftSQL"});
+            "MicrosoftSQL",
+            "Oracle"});
             this.cboxType.Location = new System.Drawing.Point(98, 85);
             this.cboxType.Name = "cboxType";
             this.cboxType.Size = new System.Drawing.Size(121, 21);

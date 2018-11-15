@@ -65,6 +65,11 @@
                     {
                         return new DataBaseMicrosoftSQLServer(this.configuration.ConnectionString);
                     }
+
+                    if (this.configuration.Type.ToLower() == "oracle")
+                    {
+                        return new DataBaseOracle(this.configuration.ConnectionString);
+                    }
                 }
             }
 
