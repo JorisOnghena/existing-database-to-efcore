@@ -1,4 +1,4 @@
 theme: jekyll-theme-minimal
-logo: https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/screenshots/logo.png
+logo: /logo.png
 show_downloads: true
 google_analytics: UA-129313270-1
