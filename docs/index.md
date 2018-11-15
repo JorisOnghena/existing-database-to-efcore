@@ -23,6 +23,15 @@ A sample ini config file used by this program.
 DisplayName = Test
 String = Your connection string
 Type = MySQL
+
+[CodeGeneration]
+Namespace = MyNamespace22
+SealedClasses = True
 ~~~~
+
+## Works with
+![Logo MYSQL](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/docs/logo-mysql.png "MySQL")
+![Logo MS SQL Server](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/docs/logo-sqlserver.png "MS SQL Server")
+![Logo Oracle](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/docs/logo-oracle.png "Oracle")
 
 <sub>Icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a><sub>

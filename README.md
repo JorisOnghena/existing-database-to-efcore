@@ -23,4 +23,13 @@ A sample ini config file used by this program.
 DisplayName = Test
 String = Your connection string
 Type = MySQL
+
+[CodeGeneration]
+Namespace = MyNamespace22
+SealedClasses = True
 ~~~~
+
+## Works with
+![Logo MYSQL](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/docs/logo-mysql.png "MySQL")
+![Logo MS SQL Server](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/docs/logo-sqlserver.png "MS SQL Server")
+![Logo Oracle](https://raw.github.com/ShiveringSquirrel/existing-database-to-efcore/master/docs/logo-oracle.png "Oracle")
