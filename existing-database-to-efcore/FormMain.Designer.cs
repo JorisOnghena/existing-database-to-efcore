@@ -49,6 +49,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.ofdOpenIni = new System.Windows.Forms.OpenFileDialog();
+            this.cbGenConstructor = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -234,6 +235,7 @@
             this.txtSource.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtSource.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.txtSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSource.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtSource.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.AllTextRange;
             this.txtSource.IsReplaceMode = false;
             this.txtSource.Language = FastColoredTextBoxNS.Language.CSharp;
@@ -256,10 +258,11 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.cbGenConstructor);
             this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Location = new System.Drawing.Point(683, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(114, 132);
+            this.groupBox1.Size = new System.Drawing.Size(114, 114);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generate code";
@@ -269,9 +272,9 @@
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.Location = new System.Drawing.Point(6, 88);
+            this.btnGenerate.Location = new System.Drawing.Point(6, 73);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(102, 38);
+            this.btnGenerate.Size = new System.Drawing.Size(102, 35);
             this.btnGenerate.TabIndex = 0;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -281,6 +284,18 @@
             // 
             this.ofdOpenIni.Filter = "Config files|*.ini";
             this.ofdOpenIni.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdOpenIni_FileOk);
+            // 
+            // cbGenConstructor
+            // 
+            this.cbGenConstructor.AutoSize = true;
+            this.cbGenConstructor.Checked = true;
+            this.cbGenConstructor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbGenConstructor.Location = new System.Drawing.Point(6, 39);
+            this.cbGenConstructor.Name = "cbGenConstructor";
+            this.cbGenConstructor.Size = new System.Drawing.Size(80, 17);
+            this.cbGenConstructor.TabIndex = 1;
+            this.cbGenConstructor.Text = "Constructor";
+            this.cbGenConstructor.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -307,6 +322,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgviewTableDescription)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -333,6 +349,7 @@
         private FastColoredTextBoxNS.FastColoredTextBox txtSource;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.CheckBox cbGenConstructor;
     }
 }
 

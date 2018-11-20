@@ -17,7 +17,7 @@
             public bool AutoIncrement;
         }
 
-        public static string GenerateCSharp(IDataBase dataBase, string tableName, string nameSpace = "MyNamespace", bool sealedClasses = true)
+        public static string GenerateCSharp(IDataBase dataBase, string tableName, string nameSpace = "MyNamespace", bool sealedClasses = true, bool generateConstructor = true)
         {
             List<string> specialDefaultFunctions = new List<string>()
             {
@@ -44,6 +44,8 @@
             sb.Append(Environment.NewLine);
 
             List<KeyField> keyFields = new List<KeyField>();
+            string constructor = $"\t\tpublic {tableNameTitleCase} (";
+            string constructorValue = $"\t\t{{{Environment.NewLine}";
             List<string> fluentConfigurationFields = new List<string>();
 
             foreach (Column column in descriptionOfTable.Columns)
@@ -109,6 +111,8 @@
                 {
                     fluentField += Environment.NewLine;
                     fluentField += "\t\t\t\t.IsRequired()";
+                    constructor += $"{columnTypeConverted} {columnNameTitleCase.FirstCharacterToLower()}, ";
+                    constructorValue += $"\t\t\tthis.{columnNameTitleCase} = {columnNameTitleCase.FirstCharacterToLower()};{Environment.NewLine}";
                 }
 
                 if (column.AutoIncrement)
@@ -124,6 +128,16 @@
                 // Add field as property
                 sb.Append($"\t\tpublic {columnTypeConverted} {columnNameTitleCase} {{ get; set; }}");
                 sb.Append(Environment.NewLine);
+            }
+
+            if (generateConstructor)
+            {
+                sb.Append(Environment.NewLine);
+                constructor = constructor.TrimEnd().TrimEnd(',') + ")" + Environment.NewLine;
+                sb.Append(constructor);
+
+                constructorValue = constructorValue + "\t\t}" + Environment.NewLine;
+                sb.Append(constructorValue);
             }
 
             sb.Append("\t}");

@@ -81,7 +81,11 @@
             try
             {
                 IDataBase db = this.RetrieveDatabase();
-                this.txtSource.Text = CodeGenerator.GenerateCSharp(db, this.tviewTables.SelectedNode.Text, this.configuration.CodeNamespace, this.configuration.CodeGenerateSealedClasses);
+                this.txtSource.Text = CodeGenerator.GenerateCSharp(db, 
+                    this.tviewTables.SelectedNode.Text, 
+                    this.configuration.CodeNamespace, 
+                    this.configuration.CodeGenerateSealedClasses, 
+                    this.cbGenConstructor.Checked);
             }
             catch (Exception exception)
             {

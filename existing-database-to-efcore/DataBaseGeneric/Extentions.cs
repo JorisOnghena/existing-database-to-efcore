@@ -1,5 +1,6 @@
 ﻿namespace existing_database_to_efcore.DataBaseGeneric
 {
+    using System;
     using System.Runtime.InteropServices.WindowsRuntime;
     using System.Text.RegularExpressions;
 
@@ -70,6 +71,16 @@
             int i;
             if (int.TryParse(s, out i)) return i;
             return null;
+        }
+
+        public static string FirstCharacterToLower(this string str)
+        {
+            if (string.IsNullOrEmpty(str) || char.IsLower(str, 0))
+            {
+                return str;
+            }
+
+            return char.ToLowerInvariant(str[0]) + str.Substring(1);
         }
     }
 }
