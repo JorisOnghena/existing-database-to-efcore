@@ -32,13 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbtnAddConnection = new System.Windows.Forms.ToolStripButton();
-            this.tsbtnRefreshConnection = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tviewTables = new System.Windows.Forms.TreeView();
@@ -50,6 +46,14 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.ofdOpenIni = new System.Windows.Forms.OpenFileDialog();
             this.cbGenConstructor = new System.Windows.Forms.CheckBox();
+            this.cbTestClasses = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.imgTestClasses = new System.Windows.Forms.PictureBox();
+            this.imgConstructor = new System.Windows.Forms.PictureBox();
+            this.tsbtnAddConnection = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnRefreshConnection = new System.Windows.Forms.ToolStripButton();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -57,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgviewTableDescription)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSource)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTestClasses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgConstructor)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -80,22 +86,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -118,24 +108,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsbtnAddConnection
-            // 
-            this.tsbtnAddConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAddConnection.Image")));
-            this.tsbtnAddConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnAddConnection.Name = "tsbtnAddConnection";
-            this.tsbtnAddConnection.Size = new System.Drawing.Size(161, 22);
-            this.tsbtnAddConnection.Text = "Create/edit configuration";
-            this.tsbtnAddConnection.Click += new System.EventHandler(this.tsbtnAddConnection_Click);
-            // 
-            // tsbtnRefreshConnection
-            // 
-            this.tsbtnRefreshConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshConnection.Image")));
-            this.tsbtnRefreshConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnRefreshConnection.Name = "tsbtnRefreshConnection";
-            this.tsbtnRefreshConnection.Size = new System.Drawing.Size(100, 22);
-            this.tsbtnRefreshConnection.Text = "Refresh tables";
-            this.tsbtnRefreshConnection.Click += new System.EventHandler(this.tsbtnRefreshConnection_Click);
             // 
             // statusStrip1
             // 
@@ -235,7 +207,6 @@
             this.txtSource.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtSource.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.txtSource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSource.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtSource.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.AllTextRange;
             this.txtSource.IsReplaceMode = false;
             this.txtSource.Language = FastColoredTextBoxNS.Language.CSharp;
@@ -258,11 +229,14 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.imgTestClasses);
+            this.groupBox1.Controls.Add(this.imgConstructor);
+            this.groupBox1.Controls.Add(this.cbTestClasses);
             this.groupBox1.Controls.Add(this.cbGenConstructor);
             this.groupBox1.Controls.Add(this.btnGenerate);
             this.groupBox1.Location = new System.Drawing.Point(683, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(114, 114);
+            this.groupBox1.Size = new System.Drawing.Size(114, 129);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Generate code";
@@ -272,9 +246,9 @@
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.Location = new System.Drawing.Point(6, 73);
+            this.btnGenerate.Location = new System.Drawing.Point(6, 89);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(102, 35);
+            this.btnGenerate.Size = new System.Drawing.Size(102, 34);
             this.btnGenerate.TabIndex = 0;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -290,12 +264,80 @@
             this.cbGenConstructor.AutoSize = true;
             this.cbGenConstructor.Checked = true;
             this.cbGenConstructor.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbGenConstructor.Location = new System.Drawing.Point(6, 39);
+            this.cbGenConstructor.Location = new System.Drawing.Point(6, 35);
             this.cbGenConstructor.Name = "cbGenConstructor";
             this.cbGenConstructor.Size = new System.Drawing.Size(80, 17);
             this.cbGenConstructor.TabIndex = 1;
             this.cbGenConstructor.Text = "Constructor";
             this.cbGenConstructor.UseVisualStyleBackColor = true;
+            // 
+            // cbTestClasses
+            // 
+            this.cbTestClasses.AutoSize = true;
+            this.cbTestClasses.Checked = true;
+            this.cbTestClasses.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbTestClasses.Location = new System.Drawing.Point(6, 58);
+            this.cbTestClasses.Name = "cbTestClasses";
+            this.cbTestClasses.Size = new System.Drawing.Size(85, 17);
+            this.cbTestClasses.TabIndex = 2;
+            this.cbTestClasses.Text = "Test classes";
+            this.cbTestClasses.UseVisualStyleBackColor = true;
+            // 
+            // imgTestClasses
+            // 
+            this.imgTestClasses.Image = global::existing_database_to_efcore.Properties.Resources.StatusAnnotations_Information_16xLG_color;
+            this.imgTestClasses.Location = new System.Drawing.Point(92, 58);
+            this.imgTestClasses.Name = "imgTestClasses";
+            this.imgTestClasses.Size = new System.Drawing.Size(16, 16);
+            this.imgTestClasses.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imgTestClasses.TabIndex = 4;
+            this.imgTestClasses.TabStop = false;
+            this.toolTip1.SetToolTip(this.imgTestClasses, "Generate test classes/methods for the generated code");
+            // 
+            // imgConstructor
+            // 
+            this.imgConstructor.Image = global::existing_database_to_efcore.Properties.Resources.StatusAnnotations_Information_16xLG_color;
+            this.imgConstructor.Location = new System.Drawing.Point(92, 35);
+            this.imgConstructor.Name = "imgConstructor";
+            this.imgConstructor.Size = new System.Drawing.Size(16, 16);
+            this.imgConstructor.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.imgConstructor.TabIndex = 3;
+            this.imgConstructor.TabStop = false;
+            this.toolTip1.SetToolTip(this.imgConstructor, "Generate a constructor with all required fields as parameters");
+            // 
+            // tsbtnAddConnection
+            // 
+            this.tsbtnAddConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnAddConnection.Image")));
+            this.tsbtnAddConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAddConnection.Name = "tsbtnAddConnection";
+            this.tsbtnAddConnection.Size = new System.Drawing.Size(161, 22);
+            this.tsbtnAddConnection.Text = "Create/edit configuration";
+            this.tsbtnAddConnection.Click += new System.EventHandler(this.tsbtnAddConnection_Click);
+            // 
+            // tsbtnRefreshConnection
+            // 
+            this.tsbtnRefreshConnection.Image = ((System.Drawing.Image)(resources.GetObject("tsbtnRefreshConnection.Image")));
+            this.tsbtnRefreshConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnRefreshConnection.Name = "tsbtnRefreshConnection";
+            this.tsbtnRefreshConnection.Size = new System.Drawing.Size(100, 22);
+            this.tsbtnRefreshConnection.Text = "Refresh tables";
+            this.tsbtnRefreshConnection.Click += new System.EventHandler(this.tsbtnRefreshConnection_Click);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -323,6 +365,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgTestClasses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgConstructor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,6 +394,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.CheckBox cbGenConstructor;
+        private System.Windows.Forms.PictureBox imgConstructor;
+        private System.Windows.Forms.CheckBox cbTestClasses;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.PictureBox imgTestClasses;
     }
 }
 

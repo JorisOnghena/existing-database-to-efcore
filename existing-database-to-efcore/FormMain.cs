@@ -60,8 +60,8 @@
                     {
                         return new DataBaseMySQL(this.configuration.ConnectionString);
                     }
-                    
-                    if(this.configuration.Type.ToLower() == "microsoftsql")
+
+                    if (this.configuration.Type.ToLower() == "microsoftsql")
                     {
                         return new DataBaseMicrosoftSQLServer(this.configuration.ConnectionString);
                     }
@@ -81,11 +81,15 @@
             try
             {
                 IDataBase db = this.RetrieveDatabase();
-                this.txtSource.Text = CodeGenerator.GenerateCSharp(db, 
-                    this.tviewTables.SelectedNode.Text, 
-                    this.configuration.CodeNamespace, 
-                    this.configuration.CodeGenerateSealedClasses, 
-                    this.cbGenConstructor.Checked);
+
+                CodeGenerator.Settings settings = new CodeGenerator.Settings(db, this.tviewTables.SelectedNode.Text)
+                {
+                    Namespace = this.configuration.CodeNamespace,
+                    SealedClasses = this.configuration.CodeGenerateSealedClasses,
+                    Constructor = this.cbGenConstructor.Checked
+                };
+
+                this.txtSource.Text = CodeGenerator.GenerateCSharp(settings);
             }
             catch (Exception exception)
             {
