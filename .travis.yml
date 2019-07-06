@@ -1,4 +1,12 @@
 language: csharp
 solution: existing-database-to-efcore.sln
+dist: trusty
 mono:
   - latest
+addons:
+  sonarcloud:
+    organization: "shiveringsquirrel-github"
+    token:
+      secure: "eL9X2FRFCqwwy/bWl4ZSswwMJjbOXFE/gg1Ryc+TARwfPwbOoL/fWYbbANC8t08ARRjQ1bKefyjzxqrCWv1bpro66x47jQj6f6FT9ZJPHcT3+DtE9YfeHHn3AIi08hMicgQyZU9K7dZ1NHaBwkUqXPUrJRdyYNB7yxYlWXVvC+lFIO4RMC+COfkC8bEZg5YH6RGRKqVCrbUMHdHls0Fl+U+OgsLmdf2FkYkcWaRQLvIufhIZRsWJtardi1m+FEWTGM6tjm177J2tTsDO8H2TONeihBgMv0Jg3Osg3ZOsjzmdI1ACv6cD3T3GAQ7MIhl7K+YPiEN+TbzjmVMNm77rwLjhZYK8mNCpxJ+BD2DDAT4qukZ6vbonCitpZ+rQ2WKWogGvVxlopDMVH+lTp7ZA4PPfpaejf/k7RlOLjC/tMcTaoGQ6NS175jtGTq4wbpy/Vy1gNX4wIRaSEVZ8BspMGUp9cg9c0flB69bPFO5V6rS52hld6gJtZ0LD4VKKc4TqJ3WGb7lUvpLUJxvplz2wx5S/6AAx5xjeePYGHyxA2hBsfIXsjIgZQnmJ2ewn1m84xOUQRw+0bsYvC5U4AvaPr63sEWdGJO5pjxQ3gSsZCspqkMRdJ6IkuwhW0YDW6g66XZV7yq5vhaIfTZMnmAgcmC86Lt3Q1WIEFRSxIl2XyfM="
+script:
+  - sonar-scanner
