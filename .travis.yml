@@ -1,0 +1,4 @@
+language: csharp
+solution: existing-database-to-efcore.sln
+mono:
+  - latest
