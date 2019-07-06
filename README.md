@@ -5,6 +5,15 @@ The idea of the project is to be be able to
  - Create c# (or really any code) from an existing table.
  - Be able to plug in new databases and code generation
 
+## Current build status
+[![Build Status](https://travis-ci.org/ShiveringSquirrel/existing-database-to-efcore.svg?branch=master)](https://travis-ci.org/ShiveringSquirrel/existing-database-to-efcore)
+[![Sonarcloud Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ShiveringSquirrel_existing-database-to-efcore&metric=alert_status)](https://sonarcloud.io/dashboard?id=ShiveringSquirrel_existing-database-to-efcore)
+[![Sonarcloud Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ShiveringSquirrel_existing-database-to-efcore&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ShiveringSquirrel_existing-database-to-efcore)
+[![SonarCloud Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ShiveringSquirrel_existing-database-to-efcore&metric=security_rating)](https://sonarcloud.io/dashboard?id=ShiveringSquirrel_existing-database-to-efcore)
+[![Sonarcloud Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ShiveringSquirrel_existing-database-to-efcore&metric=code_smells)](https://sonarcloud.io/dashboard?id=ShiveringSquirrel_existing-database-to-efcore)
+[![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=ShiveringSquirrel_existing-database-to-efcore&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=ShiveringSquirrel_existing-database-to-efcore)
+[![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=ShiveringSquirrel_existing-database-to-efcore&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=ShiveringSquirrel_existing-database-to-efcore)
+
 ## Screenshots
 A few screenshots of the program.
 
