@@ -1,0 +1,20 @@
+version: 1.2.{build}
+image: Visual Studio 2019
+environment:
+  sonartoken:
+    secure: ACHEpNwTKuMV48IbGtAP1wdWkxXr7DoIz4qHfyyuYVe/qvqKAgrucKgJpiV6lC1J
+  sonarproject: shiveringsquirrel-github
+  sonarid: ShiveringSquirrel_existing-database-to-efcore
+  solutionid: existing-database-to-efcore.sln
+build_script:
+- ps: >-
+    choco install "sonarscanner-msbuild-net46" -y
+    
+    nuget restore
+
+    SonarScanner.MSBuild.exe begin /k:"$env:sonarid" /d:"sonar.host.url=https://sonarcloud.io" /o:"$env:sonarproject" /d:"sonar.login=$env:sonartoken"   /d:"sonar.exclusions=**\examples\**,**\Interop\**"
+
+    msbuild /verbosity:quiet "$env:solutionid"
+
+    SonarScanner.MSBuild.exe end /d:"sonar.login=$env:sonartoken"
+test: off
