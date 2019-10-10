@@ -86,7 +86,8 @@
                 {
                     Namespace = this.configuration.CodeNamespace,
                     SealedClasses = this.configuration.CodeGenerateSealedClasses,
-                    Constructor = this.cbGenConstructor.Checked
+                    Constructor = this.cbGenConstructor.Checked,
+                    TestClasses = this.cbTestClasses.Checked
                 };
 
                 this.txtSource.Text = CodeGenerator.GenerateCSharp(settings);

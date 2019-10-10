@@ -35,6 +35,8 @@
             StringBuilder sb = new StringBuilder();
             Table descriptionOfTable = settings.DataBase.DescribeTable(settings.TableName);
             string tableNameTitleCase = settings.TableName.ToTitleCase();
+            string testClassName = $"{tableNameTitleCase}Tests";
+            string testNameSpace = $"{settings.Namespace}.Tests";
 
             sb.Append($"namespace {settings.Namespace}");
             sb.Append(Environment.NewLine);
@@ -224,6 +226,45 @@
             sb.Append("\t}");
             sb.Append(Environment.NewLine);
             sb.Append("}");
+
+            if (settings.TestClasses)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append(Environment.NewLine);
+                sb.Append($"namespace {testNameSpace}");
+                sb.Append(Environment.NewLine);
+                sb.Append("{");
+                sb.Append(Environment.NewLine);
+                sb.Append("\tusing NUnit.Framework;");
+                sb.Append(Environment.NewLine);
+                sb.Append($"\tusing {settings.Namespace};");
+                sb.Append(Environment.NewLine);
+                sb.Append(Environment.NewLine);
+                sb.Append("\t[TestFixture]");
+                sb.Append(Environment.NewLine);
+                sb.Append($"\tpublic class {testClassName}");
+                sb.Append(Environment.NewLine);
+                sb.Append("\t{");
+                sb.Append(Environment.NewLine);
+                sb.Append("\t\t[Test]");
+                sb.Append(Environment.NewLine);
+                sb.Append("\t\tpublic void CreateAndCheckProperties()");
+                sb.Append(Environment.NewLine);
+                sb.Append("\t\t{");
+
+
+
+
+
+                sb.Append(Environment.NewLine);
+                sb.Append("\t\t}");
+                sb.Append(Environment.NewLine);
+                sb.Append(Environment.NewLine);
+                sb.Append("\t}");
+                sb.Append(Environment.NewLine);
+                sb.Append("}");
+            }
+
             return sb.ToString();
         }
 
