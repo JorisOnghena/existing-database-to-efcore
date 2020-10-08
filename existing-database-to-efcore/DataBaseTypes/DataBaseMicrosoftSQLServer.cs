@@ -49,6 +49,10 @@
             {
                 return $"double{nullIndicator}";
             }
+            else if (originalType.ToLower().Contains("bit"))
+            {
+                return $"bool{nullIndicator}";
+            }
 
             return "UNDEFINED";
         }
