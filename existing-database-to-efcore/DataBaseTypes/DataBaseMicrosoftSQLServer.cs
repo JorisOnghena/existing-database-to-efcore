@@ -53,6 +53,14 @@
             {
                 return $"bool{nullIndicator}";
             }
+            else if (originalType.ToLower().Contains("uniqueidentifier"))
+            {
+                return $"Guid{nullIndicator}";
+            }
+            else if (originalType.ToLower().Contains("varbinary"))
+            {
+                return $"byte[]";
+            }
 
             return "UNDEFINED";
         }
